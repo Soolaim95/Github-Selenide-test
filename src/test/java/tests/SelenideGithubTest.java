@@ -2,11 +2,13 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.GithubSearchPageObject;
 
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideGithubTest {
+
+    GithubSearchPageObject githubSearchPageObject = new GithubSearchPageObject();
 
     @BeforeAll
     static void beforeAll() {
@@ -15,24 +17,19 @@ public class SelenideGithubTest {
     }
 
     @Test
-    void SearchSelenideInGithub() {
-
-        //Открыть страницу Selenide в Github
-        $("[data-test-selector=nav-search-input]").setValue("selenide").pressEnter();
-        $("ul.repo-list li").$("a").click();
-        $("h1").shouldHave(text("selenide / selenide"));
-        //Перейти в раздел Wiki
-        $(".js-repo-nav #wiki-tab").click();
-        //Перейти в раздел SoftAssertions
-        $("#wiki-pages-filter").setValue("SoftAssertions");
-        $$(".Box-row").findBy(visible).click();
-        $("#repo-content-pjax-container").closest("h1").shouldHave(text("SoftAssertions"));
-        //Найти пример кода для JUnit5
-        $(".markdown-body").lastChild().shouldHave(text("Using JUnit5 extend test class:"));
-
-
-        sleep(5000);
-
-
+    void SelenideSearchInGithub() {
+        githubSearchPageObject
+                //Открыть страницу Selenide в Github
+                .searchSelenide()
+                .openPage()
+                .checkTitle()
+                //Перейти в раздел Wiki
+                .wikiPage()
+                //Перейти в раздел SoftAssertions
+                .searchSoft()
+                .openSoft()
+                .checkTitleSoft()
+                //Найти пример кода для JUnit5
+                .checkCode();
     }
 }
