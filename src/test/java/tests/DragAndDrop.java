@@ -12,10 +12,14 @@ public class DragAndDrop {
 
     @BeforeAll
     static void beforeAll() {
-        open("https://the-internet.herokuapp.com/drag_and_drop");
         Configuration.browserSize="1920x1080";
     }
 
+    @BeforeEach
+    static void beforeEach() {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
+    }
+    
     @Test
     void checkDragAndDrop() {
         $("#column-a").dragAndDropTo("#column-b");
