@@ -21,7 +21,7 @@ public class SelenideGithubTest {
     }
 
     @Test
-    void SelenideSearchInGithub() {
+    void selenideSearchInGithub() {
         githubSearchPageObject
                 //Открыть страницу Selenide в Github
                 .searchSelenide()
