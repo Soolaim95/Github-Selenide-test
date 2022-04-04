@@ -12,8 +12,12 @@ public class SelenideGithubTest {
 
     @BeforeAll
     static void beforeAll() {
-        open("https://github.com/");
         Configuration.browserSize="1920x1080";
+    }
+    
+    @BeforeEach
+    static void beforeEach() {
+        open("https://github.com/");
     }
 
     @Test
