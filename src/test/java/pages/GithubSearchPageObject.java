@@ -12,15 +12,15 @@ public class GithubSearchPageObject {
     final private SelenideElement
             searchInput = $("[data-test-selector=nav-search-input]"),
             linkPage = $("ul.repo-list li").$("a"),
-            title = $("h1"),
+            title = $("h2"),
             searchWiki = $(".js-repo-nav #wiki-tab"),
             wikiFilter = $("#wiki-pages-filter"),
             searchElement = $$(".Box-row").findBy(visible),
             pageTitle = $("#repo-content-pjax-container h1"),
             searchCode = $(".markdown-body h4", 2);
 
-    public GithubSearchPageObject searchSelenide() {
-        searchInput.setValue("selenide").pressEnter();
+    public GithubSearchPageObject searchSelenide(String selenide) {
+        searchInput.setValue(selenide).pressEnter();
         return this;
     }
 
@@ -29,8 +29,8 @@ public class GithubSearchPageObject {
         return this;
     }
 
-    public GithubSearchPageObject checkTitle() {
-        title.shouldHave(text("selenide / selenide"));
+    public GithubSearchPageObject checkTitle(String titleValue) {
+        title.shouldHave(text(titleValue));
         return this;
     }
 
@@ -39,8 +39,8 @@ public class GithubSearchPageObject {
     return this;
     }
 
-    public GithubSearchPageObject searchSoft() {
-        wikiFilter.setValue("SoftAssertions");
+    public GithubSearchPageObject searchSoft(String softAssertions) {
+        wikiFilter.setValue(softAssertions);
         return this;
     }
 
@@ -49,13 +49,13 @@ public class GithubSearchPageObject {
         return this;
     }
 
-    public GithubSearchPageObject checkTitleSoft() {
-        pageTitle.shouldHave(text("SoftAssertions"));
+    public GithubSearchPageObject checkTitleSoft(String softAssertions) {
+        pageTitle.shouldHave(text(softAssertions));
         return this;
     }
 
-    public GithubSearchPageObject checkCode() {
-        searchCode.shouldHave(text("Using JUnit5 extend test class:"));
+    public GithubSearchPageObject checkCode(String checkText) {
+        searchCode.shouldHave(text(checkText));
         return this;
     }
 }

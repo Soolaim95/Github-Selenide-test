@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -16,7 +17,7 @@ public class DragAndDrop {
     }
 
     @BeforeEach
-    static void beforeEach() {
+    void beforeEach() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
     }
     
